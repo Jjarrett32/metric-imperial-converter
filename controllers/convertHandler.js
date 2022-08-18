@@ -55,7 +55,7 @@ function ConvertHandler() {
   };
 
   this.getReturnUnit = function (initUnit) {
-    let result = initUnit.LowerCase();
+    let result = initUnit.toLowerCase();
     switch (result) {
       case "km":
         return "mi";
@@ -65,7 +65,7 @@ function ConvertHandler() {
         return "kg";
       case "mi":
         return "km";
-      case "1":
+      case "l":
         return "gal";
       case "kg":
         return "lbs";
@@ -75,7 +75,7 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function (initUnit) {
-    let result = initUnit.LowerCase();
+    let result = initUnit.toLowerCase();
     switch (result) {
       case "km":
         return "kilometers";
@@ -85,10 +85,10 @@ function ConvertHandler() {
         return "pounds";
       case "mi":
         return "miles";
-      case "1":
+      case "l":
         return "liters";
       case "kg":
-        return "kilogramss";
+        return "kilograms";
       default:
         return "don't know";
     }
@@ -104,16 +104,22 @@ function ConvertHandler() {
     switch (unit) {
       case "km":
         result = initNum / miToKm;
+        break
       case "gal":
         result = initNum * galToL;
+        break
       case "lbs":
         result = initNum * lbsToKg;
+        break
       case "mi":
         result = initNum * miToKm;
+        break
       case "l":
         result =  initNum / galToL;
+        break
       case "kg":
         result = initNum /  lbsToKg;
+        break
       default:
         result = undefined;
     }
@@ -122,7 +128,7 @@ function ConvertHandler() {
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
-    return `${initNum} ${this.spellOutUnit(initunit)} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`;
+    return `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`;
   };
 }
 
