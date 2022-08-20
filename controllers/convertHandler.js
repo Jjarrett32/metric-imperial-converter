@@ -1,12 +1,10 @@
-
-//Helper function for Convert Handler
-function splitNumStr(inputStr) {
-  let num = inputStr.match(/[.\d\/]+/g) || "1";
-  let str = inputStr.match(/[a-zA-Z]+/g)[0];
+function splitNumStr(input) {
+  let num = input.match(/[.\d\/]+/g) || "1";
+  let str = input.match(/[a-zA-Z]+/g)[0];
 
   return [num[0], str];
 }
-//Helper function for Convert Handler
+
 function checkDiv(posFraction) {
   let nums = posFraction.split("/");
   if (nums.length > 2) {
@@ -19,6 +17,7 @@ function ConvertHandler() {
   this.getNum = function (input) {
     let result = splitNumStr(input)[0];
     let nums = checkDiv(result);
+
     if (!nums) {
       return undefined;
     }
@@ -27,16 +26,16 @@ function ConvertHandler() {
     let num2 = nums[1] || "1";
 
     result = parseFloat(num1) / parseFloat(num2);
+
     if (isNaN(num1) || isNaN(num2)) {
       return undefined;
     }
-
     return result;
   };
 
   this.getUnit = function (input) {
     let result = splitNumStr(input)[1].toLowerCase();
-    switch (result) {
+    switch(result){
       case "km":
         return "km";
       case "gal":
@@ -55,8 +54,8 @@ function ConvertHandler() {
   };
 
   this.getReturnUnit = function (initUnit) {
-    let result = initUnit.toLowerCase();
-    switch (result) {
+    let unit = initUnit.toLowerCase();
+    switch(unit){
       case "km":
         return "mi";
       case "gal":
@@ -75,8 +74,8 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function (initUnit) {
-    let result = initUnit.toLowerCase();
-    switch (result) {
+    let unit = initUnit.toLowerCase();
+    switch(unit){
       case "km":
         return "kilometers";
       case "gal":
@@ -101,25 +100,25 @@ function ConvertHandler() {
     let unit = initUnit.toLowerCase();
     let result;
 
-    switch (unit) {
+    switch(unit){
       case "km":
         result = initNum / miToKm;
-        break
-      case "gal":
+        break;
+      case "gal": 
         result = initNum * galToL;
-        break
+        break;
       case "lbs":
         result = initNum * lbsToKg;
-        break
+        break;
       case "mi":
         result = initNum * miToKm;
-        break
+        break;
       case "l":
-        result =  initNum / galToL;
-        break
+        result = initNum / galToL;
+        break;
       case "kg":
-        result = initNum /  lbsToKg;
-        break
+        result = initNum / lbsToKg;
+        break;
       default:
         result = undefined;
     }
